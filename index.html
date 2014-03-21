@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Responsive table</title>
+	<style type="text/css">
+		* {margin: 0; padding: 0;}
+		*, *:before, *:after {
+		  -webkit-box-sizing: border-box; 
+		  -moz-box-sizing: border-box; 
+		  box-sizing: border-box;
+		}
+		
+		body	{font-family: Helvetica;}
+		
+		h1	{padding: 20px; text-align: center;}
+		
+		table	{width: 90%; margin: 0 auto; border:0; border-collapse: collapse;}
+		table th,
+		table td {text-align: center; border:1px #ddd solid; padding: 20px;}
+		table tbody tr:nth-child(odd) {background: #eee;}
+		table tbody td:before {display: none;}
+		
+		/* breakpoint 750 */
+		@media (max-width:750px){
+		  	table thead th	{display:none;}
+		  	table tbody	{display: block; width: 100%;}
+		  	table tbody tr	{display: block; margin-bottom: 5px;}
+		  	table tbody td	{display: block; padding-left: 50%; width: 100%; position: relative; text-align: left;}
+		  	table tbody td:before	{position: absolute; top: 19px; left: 20px; width: 45%; padding-right: 10px; height:30px; white-space: nowrap; content:'div'; display: block; font-weight: bold;}
+		  	table tbody tr:nth-child(odd) {background: #fff;}
+		  	table tbody td:nth-child(even) {background: #eee;}
+		}
+		
+	</style>
+</head>
+<body>
+	<h1>Responsive Table</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Voornaam</th>
+				<th>Achternaam</th>
+				<th>Leeftijd</th>
+				<th>Geslacht</th>
+				<th>Woonplaats</th>
+				<th>Land</th>
+				<th>Geboorteplaats</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Tom</td>
+				<td>Meulendijks</td>
+				<td>27</td>
+				<td>Man</td>
+				<td>Maastricht</td>
+				<td>Nederland</td>
+				<td>Maastricht</td>
+			</tr>
+			<tr>
+				<td>Tom</td>
+				<td>Meulendijks</td>
+				<td>27</td>
+				<td>Man</td>
+				<td>Maastricht</td>
+				<td>Nederland</td>
+				<td>Maastricht</td>
+			</tr>
+			<tr>
+				<td>Tom</td>
+				<td>Meulendijks</td>
+				<td>27</td>
+				<td>Man</td>
+				<td>Maastricht</td>
+				<td>Nederland</td>
+				<td>Maastricht</td>
+			</tr>
+			<tr>
+				<td>Tom</td>
+				<td>Meulendijks</td>
+				<td>27</td>
+				<td>Man</td>
+				<td>Maastricht</td>
+				<td>Nederland</td>
+				<td>Maastricht</td>
+			</tr>
+		</tbody>
+	</table>
+	<script type="text/javascript">
+		window.onload = function(){
+			
+			var headings = document.querySelectorAll('th');
+			var trs = document.querySelectorAll('tbody tr');
+			var node = document.createElement('style');
+			var css_string = "";
+			var tds = trs[0].querySelectorAll('td');
+			
+			for(var j =0; tds.length>j; j++){
+			
+				css_string += "table tbody td:nth-child("+(j+1)+"):before {content: '"+headings[j].innerHTML+"';}";
+	
+			}
+			
+			node.innerHTML = css_string;
+			  document.body.appendChild(node);
+			
+		
+		}
+	</script>
+</body>
+</html>
